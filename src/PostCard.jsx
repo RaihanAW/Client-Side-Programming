@@ -6,7 +6,7 @@ function PostCard(props) {
   return (
     <div className="bg-white p-6 rounded-lg shadow h-auto hover:bg-red-50 hover:border-2 hover:scale-105">
       <div className='flex flex-col items-center text-center'>
-        <h2 className="text-xl flex- font-semibold text-gray-800 mb-2">{title}</h2>
+        <h2 className="text-xl font-semibold text-gray-800 mb-2">{title}</h2>
         <p className="text-gray-600">
             <span className="font-medium">{body}</span> 
         </p>
