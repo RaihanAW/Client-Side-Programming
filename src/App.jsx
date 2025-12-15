@@ -1,37 +1,40 @@
 import "./App.css";
+import SignInPage from "./pages/signIn"
+import SignUpPage from "./pages/signUp"
+import ErrorPage from "./pages/error"
+import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 
 function App() {
+  const myRouter = createBrowserRouter([
+    {
+      path: "/",
+      element: (
+				<div className="flex justify-center items-center min-h-screen">
+          <Link to="/login" className="p-2 m-5 bg-primary text-white">
+            Login
+          </Link>
+          |
+          <Link to="/register" className="p-2 m-5 bg-primary text-white">
+            Register
+          </Link>
+        </div>
+      ),
+      errorElement: <ErrorPage/>,
+    },
+    {
+      path: "/login",
+      element: <SignInPage />,
+    },
+    {
+      path: "/register",
+      element: <SignUpPage />,
+    },
+  ]);
+
   return (
-    <main className="min-h-screen bg-special-mainBg flex justify-center items-center">
-      {/* container start */}
-      <div className="w-full max-w-sm">
-        {/* logo start */}
-        <div className="flex justify-center font-poppins tracking-wide text-primary text-4xl">
-        </div>
-        {/* logo end */}
-
-        <div className="mt-16">
-          {/* form start */}
-          {/* form end */}
-        </div>
-
-        {/* teks start */}
-        <div className="my-9 px-7 flex flex-col justify-center items-center text-xs text-gray-03">
-        </div>
-        {/* teks end */}
-
-        {/* sign in with google start */}
-        <div className="mb-8">
-        </div>
-        {/* sign in with google end */}
-
-        {/* link start */}
-        <div className="flex justify-center">
-        </div>
-        {/* link end */}
-      </div>
-      {/* container end */}
-    </main>
+    <>
+      <RouterProvider router={myRouter} />
+    </>
   );
 }
 
