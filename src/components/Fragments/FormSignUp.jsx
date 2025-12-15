@@ -1,5 +1,5 @@
 import React from 'react'
-import LabeledInput from '../Elements/LabeledInput'
+import Input from '../Elements/Input'
 import Button from '../Elements/Button'
 import { Link } from 'react-router-dom'
 
@@ -10,7 +10,7 @@ function FormSignUp() {
             <div className="mt-16">
                 <form action="">
                 <div className="mb-6">
-                    <LabeledInput
+                    <Input
                         label="Username"
                         id="username"
                         type="text"
@@ -19,7 +19,7 @@ function FormSignUp() {
                      />
                 </div>
                 <div className="mb-6">
-                    <LabeledInput
+                    <Input
                         label="Email Adress"
                         id="email"
                         type="email"
@@ -28,7 +28,7 @@ function FormSignUp() {
                      />
                 </div>
                 <div className="mb-6">
-                    <LabeledInput
+                    <Input
                         label="Password"
                         id="password"
                         type="password"
