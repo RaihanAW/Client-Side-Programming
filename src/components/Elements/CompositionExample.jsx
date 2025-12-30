@@ -4,8 +4,14 @@ import {
     GaugeReferenceArc,
     useGaugeState,
   } from "@mui/x-charts/Gauge";
+
+  import * as React from "react";
+  import { ThemeContext } from "../../context/themeContext";
   
-  function GaugePointer() {
+  function GaugePointer(props) {
+    //const color = props;
+    const {theme} = React.useContext(ThemeContext);
+
     const { valueAngle, outerRadius, cx, cy } = useGaugeState();
   
     if (valueAngle === null) {
@@ -19,10 +25,10 @@ import {
     };
     return (
       <g>
-        <circle cx={cx} cy={cy} r={5} fill="#299D91" />
+        <circle cx={cx} cy={cy} r={5} fill={theme.color} />
         <path
           d={`M ${cx} ${cy} L ${target.x} ${target.y}`}
-          stroke="#299D91"
+          stroke={theme.color}
           strokeWidth={3}
         />
       </g>
@@ -31,6 +37,7 @@ import {
   
   export default function CompositionExample(props) {
     const { data } = props;
+    const { theme } = React.useContext(ThemeContext);
   
     return (
       <GaugeContainer
@@ -39,15 +46,10 @@ import {
         startAngle={-90}
         endAngle={90}
         value={data}
-        sx={() => ({
-          [`& .value-arc`]: {
-            fill: "#299D91",
-          },
-        })}
       >
         <GaugeReferenceArc />
-        <GaugeValueArc className="value-arc" />
-        <GaugePointer />
+        <GaugeValueArc sx={{ fill: theme.color }} />
+        <GaugePointer color={theme.color} />
       </GaugeContainer>
     );
   }
