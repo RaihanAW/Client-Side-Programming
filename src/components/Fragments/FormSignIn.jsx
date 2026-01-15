@@ -1,15 +1,24 @@
-import React from 'react'
-import Input from '../Elements/Input'
-import CheckBox from '../Elements/CheckBox'
-import Button from '../Elements/Button'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import Input from '../Elements/Input';
+import CheckBox from '../Elements/CheckBox';
+import Button from '../Elements/Button';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
-function FormSignIn() {
+function FormSignIn({ onSubmit }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(email,password);
+  };
+
   return (
     <>
         {/* form start */}
         <div className="mt-16">
-          <form action="">
+          <form onSubmit={handleSubmit}>
             <div className="mb-6">
             <Input
                     label="Email Adress"
@@ -17,6 +26,8 @@ function FormSignIn() {
                     type="email"
                     placeholder="helloworld@programming.com"
                     name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                 />
             </div>
             <div className="mb-6">
@@ -26,6 +37,8 @@ function FormSignIn() {
                     type="password"
                     placeholder="***************"
                     name="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
             </div>
             <div className="mb-6">
@@ -36,7 +49,7 @@ function FormSignIn() {
                     name="status"
                 />
             </div>
-            <Button type="button">Login</Button>
+            <Button type="submit">Login</Button>
           </form>
         {/* form end */}
         </div>
