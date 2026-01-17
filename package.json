@@ -18,12 +18,14 @@
     "@mui/x-charts": "^8.23.0",
     "@tailwindcss/vite": "^4.1.13",
     "axios": "^1.13.2",
+    "formik": "^2.4.9",
     "jwt-decode": "^4.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.10.1",
     "tailwindcss": "^4.1.13",
-    "vite": "^5.x"
+    "vite": "^5.x",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
