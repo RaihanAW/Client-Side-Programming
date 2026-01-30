@@ -2,6 +2,10 @@ import React from "react";
 import Logo from "../Elements/Logo";
 import Input from "../Elements/Input";
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import Icon from "../Elements/Icon"
 import { NavLink } from "react-router-dom";
 import { useContext, useState } from "react";
@@ -32,21 +36,36 @@ function MainLayout(props) {
   
   const {theme, setTheme} = useContext(ThemeContext);
   const { user, logout } = useContext(AuthContext);
+  const [logoutLoading, setLogoutLoading] = useState(false);
 
   const handleLogout = async () => {
+    setLogoutLoading(true);
     try {
       await logoutService();
-      logout(); 
     } catch (err) {
       console.error(err);
-      if (err.status === 401) {
-        logout();
-      }
+    } finally {
+      logout();
+      setLogoutLoading(false);
     }
   };
   
   return (
     <>
+      <Backdrop
+        sx={{
+          color: "#fff",
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+        }}
+        open={logoutLoading}
+        >
+        <Box display="flex" flexDirection="column" alignItems="center">
+          <CircularProgress color="inherit" />
+          <Typography variant="body2" mt={2}>
+            Logging Out
+          </Typography>
+        </Box>
+      </Backdrop>
 	    <div className={`flex min-h-screen ${theme.name}`}>
 			<aside className="bg-black w-28 sm:w-64 text-special-bg2
             flex flex-col justify-between px-7 py-12">
